@@ -1,0 +1,17 @@
+# docker build -t radsan-freebie -f Dockerfile.cjappl .
+FROM ubuntu:22.04
+
+# Install required packages
+RUN apt-get update && apt-get install -y clang cmake ninja-build git vim fzf lldb fish sudo \
+    && update-alternatives --install /usr/bin/cc cc /usr/bin/clang 60 \
+    && update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++ 40
+
+# Set the default shell to fish
+CMD ["fish"]
+
+
+# Run, attaching the current dir to the container:
+# docker run -v $(pwd):/test_radsan -it radsan-freebie:latest /usr/bin/fish
+
+# Run a command without using an interactive session
+# docker run -v $(pwd):/test_radsan radsan-freebie:latest /bin/bash -c "cd /test_radsan && ls -la"
