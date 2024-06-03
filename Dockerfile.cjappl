@@ -6,6 +6,12 @@ RUN apt-get update && apt-get install -y clang cmake ninja-build git vim fzf lld
     && update-alternatives --install /usr/bin/cc cc /usr/bin/clang 60 \
     && update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++ 40
 
+# Create the configuration directory
+RUN mkdir -p /root/.config/fish
+
+# Copy in the config file
+COPY config.fish /root/.config/fish/config.fish
+
 # Set the default shell to fish
 CMD ["fish"]
 
