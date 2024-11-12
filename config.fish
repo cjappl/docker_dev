@@ -1,4 +1,3 @@
-
 function fish_user_key_bindings
     for mode in insert default visual
         # Enable ctrl + f for auto complete 
@@ -41,12 +40,6 @@ function fish_mode_prompt
   set_color normal
 end
 
-#set __fish_git_prompt_show_informative_status true
-set __fish_git_prompt_showdirtystate true
-set __fish_git_prompt_showuntrackedfiles true
-
-set -x VIRTUAL_ENV_DISABLE_PROMPT true
-
 function fish_prompt -d "Write out the prompt"
     set_color aacf9f
     printf '[DOCKER UBUNTU] > ' 
@@ -63,4 +56,3 @@ function make_radsan
 end
 
 cd /test_radsan
-

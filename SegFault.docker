@@ -1,0 +1,26 @@
+FROM ubuntu:20.04
+
+# Choose some arbitrary "old-ish" version of CMake newer than 3.20 (LLVM minimum)
+#RUN apt-get update && apt-get install -y cmake ninja-build lldb fish sudo build-essential wget
+RUN apt-get update && apt-get install -y cmake 
+RUN apt-get update && apt-get install -y ninja-build 
+RUN apt-get update && apt-get install -y lldb
+RUN apt-get update && apt-get install -y python3
+RUN apt-get update && apt-get install -y fish
+RUN apt-get update && apt-get install -y wget
+
+RUN wget https://github.com/Kitware/CMake/releases/download/v3.24.3/cmake-3.24.3-Linux-aarch64.sh
+RUN chmod u+x cmake-3.24.3-Linux-aarch64.sh
+RUN mkdir /opt/cmake-3.24.3
+RUN ./cmake-3.24.3-Linux-aarch64.sh --skip-license --prefix=/opt/cmake-3.24.3
+RUN ln -s /opt/cmake-3.24.3/bin/* /usr/local/bin/
+
+
+RUN apt-get update && apt-get install -y clang
+
+RUN update-alternatives --install /usr/bin/cc cc /usr/bin/clang 60
+RUN update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++ 40
+
+RUN apt-get update && apt-get install -y ccache
+RUN apt-get update && apt-get install -y git
+RUN apt-get update && apt-get install -y g++
